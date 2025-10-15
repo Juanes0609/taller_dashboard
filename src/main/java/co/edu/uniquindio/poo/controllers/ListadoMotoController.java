@@ -1,54 +1,40 @@
+package co.edu.uniquindio.poo.controllers;
+
+import co.edu.uniquindio.poo.model.Moto;
+import co.edu.uniquindio.poo.repositories.MotoRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ListadoMotoController {
 
-    @FXML private TableView<Producto> productsTable; 
-    @FXML private TableColumn<Producto, String> colCode;
-    @FXML private TableColumn<Producto, String> colName;
-    @FXML private TableColumn<Producto, String> colDescription;
-    @FXML private TableColumn<Producto, Double> colPrice;
-    @FXML private TableColumn<Producto, Integer> colStock;
+    @FXML private TableView<Moto> productsTable; 
+    @FXML private TableColumn<Moto, String> colPlate;
+    @FXML private TableColumn<Moto, String> colBrand;
+    @FXML private TableColumn<Moto, String> colYearModel;
 
-    private ProductoRepository productoRepository; 
-    private ObservableList<Producto> productsList;
+    private MotoRepository motoRepository; 
+    private ObservableList<Moto> motosList;
     private DashboardController dashboardController;
 
     @FXML
     private void initialize() {
-        productoRepository = ProductoRepository.getInstance(); 
+        motoRepository = MotoRepository.getInstance(); 
         
-        colCode.setCellValueFactory(new PropertyValueFactory<>("code")); 
-        colName.setCellValueFactory(new PropertyValueFactory<>("name")); 
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("description")); 
-        colPrice.setCellValueFactory(new PropertyValueFactory<>("price")); 
-        colStock.setCellValueFactory(new PropertyValueFactory<>("stock")); 
-
-        colPrice.setCellFactory(column -> new TableCell<Producto, Double>() {
-            @Override
-            protected void updateItem(Double price, boolean empty) {
-                super.updateItem(price, empty);
-                if (empty || price == null) {
-                    setText(null);
-                } else {
-                    setText(String.format("$%.2f", price));
-                }
-            }
-        });
-        
+        colPlate.setCellValueFactory(new PropertyValueFactory<>("code")); 
+        colBrand.setCellValueFactory(new PropertyValueFactory<>("name")); 
+        colYearModel.setCellValueFactory(new PropertyValueFactory<>("description")); 
         loadProducts();
     }
 
      public void loadProducts() {
-        productsList = FXCollections.observableArrayList(productoRepository.getProducts()); 
-        productsTable.setItems(productsList);
+        motosList = FXCollections.observableArrayList(motoRepository.getMotos()); 
+        productsTable.setItems(motosList);
         productsTable.refresh();
     }
 
@@ -58,9 +44,9 @@ public class ListadoMotoController {
 
     @FXML
     private void onDeleteButton() {
-        Producto selectedProducts = productsTable.getSelectionModel().getSelectedItem();
+        Moto selectedMotos = productsTable.getSelectionModel().getSelectedItem();
 
-        if (selectedProducts == null) {
+        if (selectedMotos == null) {
             showAlert("Advertencia", "Por favor seleccione un producto para eliminar", Alert.AlertType.WARNING);
             return;
         }
@@ -68,13 +54,13 @@ public class ListadoMotoController {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Confirmar eliminación");
         confirmation.setHeaderText("¿Está seguro de eliminar el producto?");
-        confirmation.setContentText("Producto " + selectedProducts.getName());
+        confirmation.setContentText("Moto " + selectedMotos.getBrand());
 
         confirmation.showAndWait().ifPresent(response -> { 
             if(response == ButtonType.OK) {
-                productoRepository.deleteProduct(selectedProducts); 
+                motoRepository.deleteMoto(selectedMotos); 
                 loadProducts();
-                showAlert("Éxito", "Producto eliminado correctamente", Alert.AlertType.INFORMATION);
+                showAlert("Éxito", "Moto eliminado correctamente", Alert.AlertType.INFORMATION);
             }
         });
     }

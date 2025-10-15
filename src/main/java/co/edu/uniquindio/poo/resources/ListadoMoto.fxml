@@ -7,13 +7,13 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.fx10.controllers.ListadoProductoController"
+      fx:controller="co.edu.uniquindio.poo.controllers.ListadoMotoController"
       spacing="20" styleClass="root-container"
       stylesheets="@styles1.css"> <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <Label text="Listado de Productos" styleClass="title">
+    <Label text="Listado de Motos" styleClass="title">
         <font>
             <Font name="System Bold" size="28"/>
         </font>
@@ -30,13 +30,11 @@
             </VBox.margin>
         </Label>
 
-        <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+        <TableView fx:id="motosTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colCode" text="Código" prefWidth="100"/>
-                <TableColumn fx:id="colName" text="Nombre" prefWidth="200"/>
-                <TableColumn fx:id="colDescription" text="Descripción" prefWidth="280"/>
-                <TableColumn fx:id="colPrice" text="Precio" prefWidth="120"/>
-                <TableColumn fx:id="colStock" text="Stock" prefWidth="100"/>
+                <TableColumn fx:id="colPlate" text="Código" prefWidth="100"/>
+                <TableColumn fx:id="colBrand" text="Nombre" prefWidth="200"/>
+                <TableColumn fx:id="colYearModel" text="Descripción" prefWidth="280"/>
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
@@ -48,7 +46,7 @@
                 <Insets top="15"/>
             </VBox.margin>
             <Button fx:id="btnBack" text="Volver al Dashboard" onAction="#onBackToDashboard"/>
-            <Button fx:id="btnDelete" text="Eliminar Producto" onAction="#onDeleteButton"/>
+            <Button fx:id="btnDelete" text="Eliminar Moto" onAction="#onDeleteButton"/>
         </HBox>
     </VBox>
     

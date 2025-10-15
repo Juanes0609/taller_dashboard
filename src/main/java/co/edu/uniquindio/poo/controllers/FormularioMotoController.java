@@ -1,5 +1,7 @@
+package co.edu.uniquindio.poo.controllers;
 
-
+import co.edu.uniquindio.poo.model.Moto;
+import co.edu.uniquindio.poo.repositories.MotoRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,20 +12,18 @@ import javafx.scene.control.TextField;
  */
 public class FormularioMotoController {
 
-    @FXML private TextField txtCode;
-    @FXML private TextField txtName;
-    @FXML private TextField txtDescription;
-    @FXML private TextField txtPrice;
-    @FXML private TextField txtStock;
+    @FXML private TextField txtPlate;
+    @FXML private TextField txtBrand;
+    @FXML private TextField txtYearModel;
     @FXML private Button btnSave;
     @FXML private Button btnCancel;
 
-    private ProductoRepository productoRepository; 
+    private MotoRepository motoRepository; 
     private DashboardController dashboardController;
 
     @FXML
     public void initialize() {
-        productoRepository = ProductoRepository.getInstance(); 
+        motoRepository = MotoRepository.getInstance(); 
     }
 
     /**
@@ -43,19 +43,19 @@ public class FormularioMotoController {
         }
 
         try {
-            String code = txtCode.getText().trim();
-            String name = txtName.getText().trim();
-            String description = txtDescription.getText().trim();
-            double price = Double.parseDouble(txtPrice.getText().trim());
-            int stock = Integer.parseInt(txtStock.getText().trim());
+            String plate = txtPlate.getText().trim();
+            String brand = txtBrand.getText().trim();
+            String yearModel = txtYearModel.getText().trim();
+            
+            
 
-            if (productoRepository.searchByCode(code) != null) {
+            if (motoRepository.searchByPlate(plate) != null) {
                 showAlert("Error", "Ya existe un producto con ese código", Alert.AlertType.ERROR);
                 return;
             }
 
-            Producto nuevoProducto = new Producto(code, name, description, price, stock);
-            productoRepository.addProduct(nuevoProducto); 
+            Moto newMoto = new Moto(brand, yearModel, plate);
+            motoRepository.addMoto(newMoto); 
 
             showAlert("Éxito", "Producto creado correctamente", Alert.AlertType.INFORMATION);
             
@@ -89,9 +89,8 @@ public class FormularioMotoController {
      */
     private boolean validateFields() {
 
-        if (txtCode.getText().trim().isEmpty() || txtName.getText().trim().isEmpty() || 
-            txtDescription.getText().trim().isEmpty() || txtPrice.getText().trim().isEmpty() || 
-            txtStock.getText().trim().isEmpty()) {
+        if (txtPlate.getText().trim().isEmpty() || txtBrand.getText().trim().isEmpty() || 
+            txtYearModel.getText().trim().isEmpty()) {
             showAlert("Error de validación", "Todos los campos son obligatorios", Alert.AlertType.WARNING);
             return false;
         }

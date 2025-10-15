@@ -1,12 +1,19 @@
 package co.edu.uniquindio.poo.controllers;
 
+import java.io.IOException;
 import java.lang.StackWalker.StackFrame;
+
+import javax.swing.plaf.ButtonUI;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
+import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.controllers.*; 
 
 /**
  * Controlador para el Dashboard principal con estructura de menú lateral
@@ -26,7 +33,7 @@ public class DashboardController {
      */
     @FXML
     private void onGoToForm () { 
-        loadView("/co/edu/uniquindio/fx10/vista/FormularioProducto.fxml", "formulario");
+        loadView("/co/edu/uniquindio/fx10/vista/FormularioMoto.fxml", "formulario");
     }
 
      /**
@@ -34,7 +41,7 @@ public class DashboardController {
      */
     @FXML
     private void onGoToList() {
-        loadView("/co/edu/uniquindio/fx10/vista/ListadoProducto.fxml", "listado");
+        loadView("/co/edu/uniquindio/vista/ListadoMoto.fxml", "listado");
     }
 
     /**

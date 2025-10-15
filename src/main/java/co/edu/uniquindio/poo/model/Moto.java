@@ -1,64 +1,48 @@
+package co.edu.uniquindio.poo.model;
+
 public class Moto {
-    private String code;
-    private String name;
-    private String description;
-    private double price;
-    private int stock;
+    private String plate;
+    private String brand;
+    private String yearModel;
+   
 
     public Moto() {
     }
 
-    public Moto(String code, String name, String description, double price, int stock) {
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
+    public Moto(String plate, String brand, String yearModel) {
+        this.plate = plate;
+        this.brand = brand;
+        this.yearModel = yearModel;
+       
     }
 
-    public String getCode() {
-        return code;
+    public String getPlate() {
+        return plate;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setPlate(String plate) {
+        this.plate = plate;
     }
 
-    public String getName() {
-        return name;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public String getDescription() {
-        return description;
+    public String getYearModel() {
+        return yearModel;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setYearModel(String yearModel) {
+        this.yearModel = yearModel;
     }
 
     @Override
     public String toString() {
-        return code + "\t" + name + "\t" + description + "\t" + price + " \t" + stock;
+        return plate + "\t" + brand + "\t" + yearModel + "\t";
     }
 }
 

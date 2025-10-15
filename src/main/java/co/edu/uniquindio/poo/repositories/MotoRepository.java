@@ -3,15 +3,15 @@ package co.edu.uniquindio.poo.repositories;
 import java.util.ArrayList;
 import co.edu.uniquindio.poo.model.Moto;
 /**
- * Repositorio centralizado para gestionar los productos
+ * Repositorio centralizado para gestionar los motoos
  * Singleton para garantizar una única instancia en toda la aplicación
  */
 public class MotoRepository {
     private static MotoRepository instance;
-    private ArrayList<Moto> products;
+    private ArrayList<Moto> motos;
 
     private MotoRepository() {
-        products = new ArrayList<>();
+        motos = new ArrayList<>();
         loadDataExample();
     }
 
@@ -29,38 +29,38 @@ public class MotoRepository {
      * Carga algunos Motos de ejemplo
      */
     private void loadDataExample() {
-        products.add(new Moto("P001", "Laptop Dell", "Laptop Dell Inspiron 15", 1200.00, 10));
-        products.add(new Moto("P002", "Mouse Logitech", "Mouse inalámbrico Logitech MX Master", 89.99, 25));
-        products.add(new Moto("P003", "Teclado Mecánico", "Teclado mecánico RGB", 150.00, 15));
+        motos.add(new Moto("P001", "Yamaha", "2021"));
+        motos.add(new Moto("P002", "Suzuki", "2017"));
+        motos.add(new Moto("P003", "BMW", "2025"));
     }
 
     /**
      * Obtiene todos los Motos
      */
-    public ArrayList<Moto> getProducts() {
-        return products;
+    public ArrayList<Moto> getMotos() {
+        return motos;
     }
 
     /**
      * Agrega un nuevo Moto
      */
-    public void addProduct(Moto product) {
-        products.add(product);
+    public void addMoto(Moto moto) {
+        motos.add(moto);
     }
 
     /**
      * Elimina un Moto
      */
-    public boolean deleteProduct(Moto product) {
-        return products.remove(product);
+    public boolean deleteMoto(Moto moto) {
+        return motos.remove(moto);
     }
 
     /**
      * Busca un Moto por código
      */
-    public Moto searchByCode(String code) {
-        return products.stream()
-                .filter(p -> p.getCode().equals(code))
+    public Moto searchByPlate(String plate) {
+        return motos.stream()
+                .filter(p -> p.getPlate().equals(plate))
                 .findFirst()
                 .orElse(null);
     }
@@ -69,7 +69,7 @@ public class MotoRepository {
      * Obtiene la cantidad de Motos
      */
     public int getCantidadMotos() {
-        return products.size();
+        return motos.size();
     }
 }
 
