@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uniquindio.fx10.controllers.FormularioMotoController"
+      spacing="20" styleClass="root-container"
+      stylesheets="@styles1.css"> <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Crear nuevo modelo de Moto" styleClass="title">
+        <font>
+            <Font name="System Bold" size="28"/>
+        </font>
+    </Label>
+
+    <VBox spacing="15" styleClass="card-panel">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <GridPane hgap="15" vgap="20">
+            <Label text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="0" 
+                   styleClass="form-label"/>
+            <TextField fx:id="txtCode" promptText="Ingrese la marca de la moto" 
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"
+                       styleClass="text-field"/>
+
+            <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   styleClass="form-label"/>
+            <TextField fx:id="txtName" promptText="Ingrese la placa de la moto" 
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       styleClass="text-field"/>
+
+            <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   styleClass="form-label"/>
+            <TextField fx:id="txtDescription" promptText="Ingrese el modelo de la moto" 
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       styleClass="text-field"/>
+
+            <columnConstraints>
+                <ColumnConstraints minWidth="120" prefWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="300"/>
+            </columnConstraints>
+        </GridPane>
+
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <VBox.margin>
+                <Insets top="20"/>
+            </VBox.margin>
+            <Button fx:id="btnCancel" text="Cancelar" onAction="#onCancel"/>
+            <Button fx:id="btnSave" text="Guardar Producto" onAction="#onSaveProduct">
+                <font>
+                    <Font name="System Bold" size="14"/>
+                </font>
+            </Button>
+        </HBox>
+    </VBox>
+    
+</VBox>
