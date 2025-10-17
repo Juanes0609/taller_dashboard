@@ -1,0 +1,7 @@
+co/edu/uniquindio/poo/repositories/MotoRepository.class
+co/edu/uniquindio/poo/controllers/DashboardController.class
+co/edu/uniquindio/poo/App.class
+module-info.class
+co/edu/uniquindio/poo/model/Moto.class
+co/edu/uniquindio/poo/controllers/FormularioMotoController.class
+co/edu/uniquindio/poo/controllers/ListadoMotoController.class

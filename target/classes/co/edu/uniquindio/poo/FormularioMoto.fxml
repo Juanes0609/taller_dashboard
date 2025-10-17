@@ -7,7 +7,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.fx10.controllers.FormularioMotoController"
+      fx:controller="co.edu.uniquindio.poo.controllers.FormularioMotoController"
       spacing="20" styleClass="root-container"
       stylesheets="@styles1.css"> <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -25,19 +25,19 @@
         </padding>
 
         <GridPane hgap="15" vgap="20">
-            <Label text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="0" 
+            <Label text="Placa:" GridPane.columnIndex="0" GridPane.rowIndex="0" 
                    styleClass="form-label"/>
             <TextField fx:id="txtCode" promptText="Ingrese la marca de la moto" 
                        GridPane.columnIndex="1" GridPane.rowIndex="0"
                        styleClass="text-field"/>
 
-            <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+            <Label text="Marca:" GridPane.columnIndex="0" GridPane.rowIndex="1"
                    styleClass="form-label"/>
             <TextField fx:id="txtName" promptText="Ingrese la placa de la moto" 
                        GridPane.columnIndex="1" GridPane.rowIndex="1"
                        styleClass="text-field"/>
 
-            <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+            <Label text="Modelo (Año):" GridPane.columnIndex="0" GridPane.rowIndex="2"
                    styleClass="form-label"/>
             <TextField fx:id="txtDescription" promptText="Ingrese el modelo de la moto" 
                        GridPane.columnIndex="1" GridPane.rowIndex="2"
@@ -54,7 +54,7 @@
                 <Insets top="20"/>
             </VBox.margin>
             <Button fx:id="btnCancel" text="Cancelar" onAction="#onCancel"/>
-            <Button fx:id="btnSave" text="Guardar Producto" onAction="#onSaveProduct">
+            <Button fx:id="btnSave" text="Guardar Moto" onAction="#onSaveProduct">
                 <font>
                     <Font name="System Bold" size="14"/>
                 </font>

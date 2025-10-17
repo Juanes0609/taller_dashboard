@@ -4,45 +4,49 @@ public class Moto {
     private String plate;
     private String brand;
     private String yearModel;
-   
 
-    public Moto() {
+    private Moto(Builder builder) {
+        this.plate = builder.plate;
+        this.brand = builder.brand;
+        this.yearModel = builder.yearModel;
     }
 
-    public Moto(String plate, String brand, String yearModel) {
-        this.plate = plate;
-        this.brand = brand;
-        this.yearModel = yearModel;
-       
+    public static class Builder {
+        private String plate;
+        private String brand;
+        private String yearModel;
+
+        public Builder plate(String plate) {
+            this.plate = plate;
+            return this;
+        }
+
+        public Builder brand(String brand) {
+            this.brand = brand;
+            return this;
+        }
+
+        public Builder yearModel(String yearModel) {
+            this.yearModel = yearModel;
+            return this;
+        }
+
+        public Moto build() {
+            return new Moto(this);
+        }
     }
 
     public String getPlate() {
         return plate;
     }
 
-    public void setPlate(String plate) {
-        this.plate = plate;
-    }
-
     public String getBrand() {
         return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public String getYearModel() {
         return yearModel;
     }
 
-    public void setYearModel(String yearModel) {
-        this.yearModel = yearModel;
-    }
-
-    @Override
-    public String toString() {
-        return plate + "\t" + brand + "\t" + yearModel + "\t";
-    }
+    
 }
-

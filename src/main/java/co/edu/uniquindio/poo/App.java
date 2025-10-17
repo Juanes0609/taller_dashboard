@@ -11,7 +11,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/fx10/vista/Dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/poo/Dashboard.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 900, 600);

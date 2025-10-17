@@ -1,7 +1,7 @@
 package co.edu.uniquindio.poo.controllers;
 
 import co.edu.uniquindio.poo.model.Moto;
-import co.edu.uniquindio.poo.repositories.MotoRepository;
+import co.edu.uniquindio.poo.model.MotoService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,29 +13,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ListadoMotoController {
 
-    @FXML private TableView<Moto> productsTable; 
+    @FXML private TableView<Moto> motosTable;
     @FXML private TableColumn<Moto, String> colPlate;
     @FXML private TableColumn<Moto, String> colBrand;
     @FXML private TableColumn<Moto, String> colYearModel;
 
-    private MotoRepository motoRepository; 
+    private MotoService motoService = new MotoService();
     private ObservableList<Moto> motosList;
     private DashboardController dashboardController;
 
     @FXML
     private void initialize() {
-        motoRepository = MotoRepository.getInstance(); 
-        
-        colPlate.setCellValueFactory(new PropertyValueFactory<>("code")); 
-        colBrand.setCellValueFactory(new PropertyValueFactory<>("name")); 
-        colYearModel.setCellValueFactory(new PropertyValueFactory<>("description")); 
+        colPlate.setCellValueFactory(new PropertyValueFactory<>("plate"));
+        colBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        colYearModel.setCellValueFactory(new PropertyValueFactory<>("yearModel"));
         loadProducts();
     }
 
-     public void loadProducts() {
-        motosList = FXCollections.observableArrayList(motoRepository.getMotos()); 
-        productsTable.setItems(motosList);
-        productsTable.refresh();
+    public void loadProducts() {
+        motosList = FXCollections.observableArrayList(motoService.getAllMotos());
+        motosTable.setItems(motosList);
     }
 
     public void setDashboardController(DashboardController dashboardController) {
@@ -44,35 +41,35 @@ public class ListadoMotoController {
 
     @FXML
     private void onDeleteButton() {
-        Moto selectedMotos = productsTable.getSelectionModel().getSelectedItem();
+        Moto selected = motosTable.getSelectionModel().getSelectedItem();
 
-        if (selectedMotos == null) {
-            showAlert("Advertencia", "Por favor seleccione un producto para eliminar", Alert.AlertType.WARNING);
+        if (selected == null) {
+            showAlert("Advertencia", "Seleccione una moto para eliminar", Alert.AlertType.WARNING);
             return;
         }
-        
+
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Confirmar eliminación");
-        confirmation.setHeaderText("¿Está seguro de eliminar el producto?");
-        confirmation.setContentText("Moto " + selectedMotos.getBrand());
+        confirmation.setHeaderText("¿Está seguro de eliminar esta moto?");
+        confirmation.setContentText(selected.getBrand());
 
-        confirmation.showAndWait().ifPresent(response -> { 
-            if(response == ButtonType.OK) {
-                motoRepository.deleteMoto(selectedMotos); 
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                motoService.deleteMoto(selected);
                 loadProducts();
-                showAlert("Éxito", "Moto eliminado correctamente", Alert.AlertType.INFORMATION);
+                showAlert("Éxito", "Moto eliminada correctamente", Alert.AlertType.INFORMATION);
             }
         });
     }
-    
+
     @FXML
     private void onBackToDashboard() {
-        if(dashboardController != null) {
+        if (dashboardController != null) {
             dashboardController.backToDashboard();
-        } 
+        }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType type) { 
+    private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
