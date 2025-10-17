@@ -13,7 +13,9 @@ public class MotoRepository {
     }
 
     public static MotoRepository getInstance() {
-        if (instance == null) instance = new MotoRepository();
+        if (instance == null) {
+            instance = new MotoRepository();
+        }
         return instance;
     }
 
